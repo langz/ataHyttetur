@@ -18,8 +18,7 @@ export class Autoresize {
 		let ta = this.element.nativeElement.querySelector("textarea");
 		ta.style.overflow = "hidden";
 		ta.style.height = "auto";
-		//ta.scrollHeight + 'px'
-		ta.style.height = ta.scrollHeight === 36 ? 17 + 'px' : ta.scrollHeight + 'px';
+		ta.style.height = ta.scrollHeight + 'px';
 	}
 
 }
