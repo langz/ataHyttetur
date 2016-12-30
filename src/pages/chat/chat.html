@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Chat
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content class="chat">
+  <ion-list inset no-lines>
+    <ion-item *ngFor="let message of messages" text-wrap>
+      <p>{{ message.name }}
+        <ion-note item-right>{{ getTimeFormat(message.dateTimeStart) }}</ion-note>
+      </p>
+      <img *ngIf="message.image" [src]="message.image" imageViewer>
+      <h2 *ngIf="message.text">{{ message.text }}</h2>
+    </ion-item>
+  </ion-list>
+</ion-content>
+<ion-footer>
+  <ion-toolbar>
+    <ion-buttons left>
+      <button [hidden]="!username" padding ion-button clear (click)="presentActionSheet()"><ion-icon name="add"></ion-icon></button>
+    </ion-buttons>
+    <ion-textarea rows="1" [hidden]="!username" autoresize class="white" placeholder="Type your message here" [(ngModel)]="message.text"></ion-textarea>
+    <ion-buttons right *ngIf="message.text">
+      <button [hidden]="!username" padding ion-button clear (click)="addTextMessage()">SEND</button>
+    </ion-buttons>
+    <ion-title [hidden]="username">Join the chat!</ion-title>
+    <ion-buttons right>
+      <button [hidden]="username" padding ion-button clear (click)="openModal()"><ion-icon name="log-in"></ion-icon></button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>

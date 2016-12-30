@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Admin
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content class="outer-content">
+  <ion-list [hidden]="!isAdmin">
+    <ion-item>
+      <ion-input type="text" placeholder="Title" [(ngModel)]="event.title"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input type="text" placeholder="Description" [(ngModel)]="event.description"></ion-input>
+    </ion-item>
+  </ion-list>
+  <ion-list [hidden]="!isAdmin">
+    <ion-item>
+      <ion-label>Date</ion-label>
+      <ion-datetime displayFormat="MMM DD YYYY" min="2017-01-20" max="2017-01-22" [(ngModel)]="event.date"></ion-datetime>
+    </ion-item>
+    <ion-item>
+      <ion-label>Start Time</ion-label>
+      <ion-datetime displayFormat="HH:mm" pickerFormat="HH mm" [(ngModel)]="event.timeStarts"></ion-datetime>
+    </ion-item>
+    <ion-item>
+      <ion-label>End Time</ion-label>
+      <ion-datetime displayFormat="HH:mm" pickerFormat="HH mm" [(ngModel)]="event.timeEnds"></ion-datetime>
+    </ion-item>
+  </ion-list>
+  <div padding [hidden]="!isAdmin">
+    <button ion-button color="primary" block (click)="addEvent(event)">Create Event</button>
+  </div>
+  <div padding [hidden]="isAdmin || !tried" style="text-align: center;">
+    <ion-icon name="sad" style="font-size:12em;"></ion-icon>
+    <p>Ask Anders Langseth for admin rights</p>
+  </div>
+</ion-content>
+<style>
+  ion-list:first-child {
+    margin-top: 32px;
+  }
+  
+  ion-list+ion-list {
+    margin-top: 0;
+  }
+
+</style>

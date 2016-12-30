@@ -1,0 +1,15 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Attendees
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <ion-searchbar placeholder="Search for room or person" (ionInput)="getItems($event)"></ion-searchbar>
+  <ion-list>
+    <a ion-item (click)="openNavDetailsPage(attendee)" *ngFor="let attendee of attendees">
+      <h2>{{ attendee.etternavn }}, {{ attendee.fornavn }}</h2>
+    </a>
+  </ion-list>
+</ion-content>

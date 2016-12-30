@@ -1,0 +1,69 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      {{ attendee.fornavn }} {{ attendee.etternavn }}
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content class="card-background-page">
+  <ion-item-group>
+    <ion-item-divider color="light">General Info</ion-item-divider>
+    <ion-item no-lines>
+      <ion-icon name="bus" item-left large></ion-icon>
+      <h2 *ngIf="attendee.transport ==='BUSS_SEN'">Friday 12:00</h2>
+      <h2 *ngIf="attendee.transport ==='BUSS_TIDLIG'">Friday 16:00</h2>
+    </ion-item>
+    <ion-item no-lines>
+      <ion-icon name="trophy" item-left large></ion-icon>
+      <h2>{{ attendee.aktivitetsdeltagelse }}</h2>
+    </ion-item>
+  </ion-item-group>
+  <ion-item-group>
+    <ion-item-divider color="light">Room Info</ion-item-divider>
+    <ion-item no-lines>
+      <ion-icon name="home" item-left large></ion-icon>
+      <h2>{{ attendee.romnavn }}</h2>
+    </ion-item>
+    <ion-item no-lines>
+      <ion-icon name="compass" item-left large></ion-icon>
+      <h2>{{ attendee.romlokasjon }}</h2>
+    </ion-item>
+  </ion-item-group>
+  <div padding>
+    <ion-segment [(ngModel)]="location" color="dark">
+      <ion-segment-button value="specific">
+        Room
+      </ion-segment-button>
+      <ion-segment-button value="overview">
+        Cabin
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+  <div [ngSwitch]="location">
+    <ion-item no-lines *ngSwitchCase="'specific'">
+      <img *ngIf="attendee.romlokasjon ==='Høydehuset 1.etg'" src="assets/img/1.jpg" imageViewer />
+      <img *ngIf="attendee.romlokasjon ==='Høydehuset 2.etg'" src="assets/img/2.jpg" imageViewer />
+      <img *ngIf="attendee.romlokasjon ==='Høydehuset 3.etg'" src="assets/img/3.jpg" imageViewer />
+      <img *ngIf="attendee.romnavn ==='Risbiten' && attendee.romlokasjon ==='Bygget på andre siden av tunet'" src="assets/img/risbiten.jpg"
+        imageViewer />
+      <img *ngIf="attendee.romnavn ==='Kvilsten' && attendee.romlokasjon ==='Bygget på andre siden av tunet'" src="assets/img/kvilsten.jpg"
+        imageViewer />
+    </ion-item>
+    <div *ngSwitchCase="'overview'">
+      <ion-item no-lines>
+        <img src="assets/img/oversikt.jpg" imageViewer />
+      </ion-item>
+      <ion-item no-lines text-wrap>
+        <p style="text-align: center;">1: Høydehuset 8: Kvilsten 9: Risbiten</p>
+      </ion-item>
+    </div>
+  </div>
+  <ion-item-group>
+    <ion-item-divider color="light">Roomies</ion-item-divider>
+    <ion-list>
+      <a ion-item (click)="openNavDetailsPage(roomie)" *ngFor="let roomie of roomies">
+        <h2>{{ roomie.etternavn }}, {{ roomie.fornavn }}</h2>
+      </a>
+    </ion-list>
+  </ion-item-group>
+</ion-content>

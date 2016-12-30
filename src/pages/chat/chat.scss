@@ -1,0 +1,17 @@
+.chat {
+  ion-note {
+    font-size: 12px;
+    float: right;
+    margin-top: 2px !important;
+  }
+}
+
+.footer>.toolbar>.toolbar-content {
+  background-color: white;
+  margin-right: 5px;
+  border-radius: 10px;
+}
+
+.input-cover {
+  position: static;
+}

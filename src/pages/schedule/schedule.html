@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Schedule</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content class="list-avatar-page">
+  <ion-item-group>
+    <ion-item-divider color="light">Friday</ion-item-divider>
+    <ion-item *ngFor="let event of friday" text-wrap>
+      <h3>{{ event.title }}
+        <ion-note>{{ event.timeStarts }}<span *ngIf="event.timeEnds"> - {{ event.timeEnds }}</span></ion-note>
+      </h3>
+      <p>{{ event.description }}</p>
+    </ion-item>
+  </ion-item-group>
+  <ion-item-group>
+    <ion-item-divider color="light">Saturday</ion-item-divider>
+    <ion-item *ngFor="let event of saturday" text-wrap>
+      <h3>{{ event.title }}
+        <ion-note>{{ event.timeStarts }}<span *ngIf="event.timeEnds"> - {{ event.timeEnds }}</span></ion-note>
+      </h3>
+      <p>{{ event.description }}</p>
+    </ion-item>
+  </ion-item-group>
+  <ion-item-group>
+    <ion-item-divider color="light">Sunday</ion-item-divider>
+    <ion-item *ngFor="let event of sunday" text-wrap>
+      <h3>{{ event.title }}
+        <ion-note>{{ event.timeStarts }}<span *ngIf="event.timeEnds"> - {{ event.timeEnds }}</span></ion-note>
+      </h3>
+      <p>{{ event.description }}</p>
+    </ion-item>
+  </ion-item-group>
+</ion-content>
