@@ -14,6 +14,7 @@ import { FirebaseApp } from 'angularfire2';
 export class ChatPage {
 
   @ViewChild(Content) content: Content;
+  inputActive = false;
   activeToast = false;
   isAtBottom = false;
   toast;
@@ -233,7 +234,6 @@ export class ChatPage {
             orderByChild: 'dateTimeStart'
           }
         }).subscribe(data => {
-          console.log(data)
           if (this.messages.length === 0) {
             this.messages = data;
           }
@@ -242,7 +242,7 @@ export class ChatPage {
             for (let i = this.messages.length; i < data.length; i++) {
               this.messages.push(data[i]);
             }
-            if (lastMessage.name !== this.username && this.pageActive) {
+            if (lastMessage.name !== this.username && this.pageActive && !this.inputActive) {
               this.showToast('New message(s)');
             }
           }

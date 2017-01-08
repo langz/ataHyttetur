@@ -21,7 +21,9 @@
     <ion-buttons left>
       <button [hidden]="!username" padding ion-button clear (click)="presentActionSheet()"><ion-icon name="add"></ion-icon></button>
     </ion-buttons>
-    <ion-textarea [hidden]="!username" rows="2" class="white" placeholder="Type your message here" [(ngModel)]="message.text"></ion-textarea>
+    <ion-textarea [hidden]="!username" rows="2" class="white" 
+    placeholder="Type your message here" [(ngModel)]="message.text"
+    (focus)="inputActive=true;" (blur)="this.inputActive=false;"></ion-textarea>
     <ion-buttons right *ngIf="message.text">
       <button [hidden]="!username" padding ion-button clear (click)="addTextMessage()">SEND</button>
     </ion-buttons>
