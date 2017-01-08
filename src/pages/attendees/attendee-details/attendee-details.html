@@ -22,11 +22,11 @@
     <ion-item-divider color="light">Room Info</ion-item-divider>
     <ion-item no-lines>
       <ion-icon name="home" item-left large></ion-icon>
-      <h2>{{ attendee.romnavn }}</h2>
+      <h2>{{ attendee.navn }}</h2>
     </ion-item>
     <ion-item no-lines>
       <ion-icon name="compass" item-left large></ion-icon>
-      <h2>{{ attendee.romlokasjon }}</h2>
+      <h2>{{ attendee.lokasjon }}</h2>
     </ion-item>
   </ion-item-group>
   <div padding>
@@ -41,12 +41,12 @@
   </div>
   <div [ngSwitch]="location">
     <ion-item no-lines *ngSwitchCase="'specific'">
-      <img *ngIf="attendee.romlokasjon ==='Høydehuset 1.etg'" src="assets/img/1.jpg" imageViewer />
-      <img *ngIf="attendee.romlokasjon ==='Høydehuset 2.etg'" src="assets/img/2.jpg" imageViewer />
-      <img *ngIf="attendee.romlokasjon ==='Høydehuset 3.etg'" src="assets/img/3.jpg" imageViewer />
-      <img *ngIf="attendee.romnavn ==='Risbiten' && attendee.romlokasjon ==='Bygget på andre siden av tunet'" src="assets/img/risbiten.jpg"
+      <img *ngIf="attendee.lokasjon ==='Høydehuset 1.etg'" src="assets/img/1.jpg" imageViewer />
+      <img *ngIf="attendee.lokasjon ==='Høydehuset 2.etg'" src="assets/img/2.jpg" imageViewer />
+      <img *ngIf="attendee.lokasjon ==='Høydehuset 3.etg'" src="assets/img/3.jpg" imageViewer />
+      <img *ngIf="attendee.navn ==='Risbiten' && attendee.lokasjon ==='Bygget på andre siden av tunet'" src="assets/img/risbiten.jpg"
         imageViewer />
-      <img *ngIf="attendee.romnavn ==='Kvilsten' && attendee.romlokasjon ==='Bygget på andre siden av tunet'" src="assets/img/kvilsten.jpg"
+      <img *ngIf="attendee.navn ==='Kvilsten' && attendee.lokasjon ==='Bygget på andre siden av tunet'" src="assets/img/kvilsten.jpg"
         imageViewer />
     </ion-item>
     <div *ngSwitchCase="'overview'">

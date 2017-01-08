@@ -23,8 +23,8 @@ export class AttendeeDetailsPage {
     this.data.list('attendees',
       {
         query: {
-          orderByChild: 'romnavn',
-          equalTo: this.attendee.romnavn
+          orderByChild: 'navn',
+          equalTo: this.attendee.navn
         }
       }).subscribe(data => {
         this.roomies = data.filter(roomie => roomie.$key !== this.attendee.$key);

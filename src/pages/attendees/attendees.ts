@@ -10,6 +10,7 @@ import { AttendeeDetailsPage } from './attendee-details/attendee-details';
 export class AttendeesPage {
   attendees = [];
   attendeeCopy = [];
+  loading = true;
   constructor(private navCtrl: NavController, private data: DataProvider, private loadingController: LoadingController) {
 
   }
@@ -25,8 +26,8 @@ export class AttendeesPage {
     // if the value is an empty string don't filter the items
     if (val && val.trim() != '') {
       this.attendees = this.attendees.filter((item) => {
-        return (item.navn.toLowerCase().indexOf(val.toLowerCase()) > -1)
-          || (item.romnavn.toLowerCase().indexOf(val.toLowerCase()) > -1);
+        return (item.fullname.toLowerCase().indexOf(val.toLowerCase()) > -1)
+          || (item.navn.toLowerCase().indexOf(val.toLowerCase()) > -1);
       })
     }
   }
@@ -36,6 +37,7 @@ export class AttendeesPage {
   }
 
   ionViewDidLoad() {
+    this.loading = true;
     let loader = this.loadingController.create({
       content: 'Loading attendees...'
     })
@@ -47,11 +49,12 @@ export class AttendeesPage {
           }
         }).subscribe(data => {
           this.attendeeCopy = data.map(attendee => {
-            attendee.navn = attendee.fornavn + ' ' + attendee.etternavn;
+            attendee.fullname = attendee.fornavn + ' ' + attendee.etternavn;
             return attendee;
           });
           this.attendees = this.attendeeCopy;
           loader.dismiss();
+          this.loading = false;
         });
     })
   }
