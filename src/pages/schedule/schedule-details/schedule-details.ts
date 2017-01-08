@@ -31,8 +31,8 @@ export class ScheduleDetailsPage {
     };
     LaunchNavigator.navigate(this.map.lat + ',' + this.map.lng, options)
       .then(
-      success => alert('Launched navigator'),
-      error => alert('Error launching navigator: ' + error)
+      success => console.log('Launched navigator'),
+      error => console.log('Error launching navigator: ' + error)
       );
   }
 
