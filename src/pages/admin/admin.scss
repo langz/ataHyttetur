@@ -5,3 +5,10 @@
   opacity: 0;
   transition: opacity 150ms ease-in
 }
+
+.fab-map {
+  top: calc(300px - 90px);
+  z-index: 50;
+  position: absolute;
+  left: 10px;
+}

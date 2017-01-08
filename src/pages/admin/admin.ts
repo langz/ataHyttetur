@@ -97,7 +97,7 @@ export class AdminPage {
       timeEnds: '',
       lat: 0,
       lng: 0
-    }
+    };
     this.tried = false;
     this.localStorage.get('admin').then((val) => {
       this.isAdmin = val;

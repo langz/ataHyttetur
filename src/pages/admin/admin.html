@@ -6,12 +6,12 @@
   </ion-navbar>
 </ion-header>
 <ion-content class="outer-content">
-  <sebm-google-map id="map" [latitude]="map.lat" [longitude]="map.lng" [zoom]="map.zoom" [hidden]="!isAdmin" (mapClick)="mapClicked($event)">
+<div *ngIf="isAdmin">
+  <sebm-google-map id="map" [latitude]="map.lat" [longitude]="map.lng" [zoom]="map.zoom" (mapClick)="mapClicked($event)">
     <sebm-google-map-marker [latitude]="event.lat" [longitude]="event.lng">
-      <sebm-google-map-info-window>
-      </sebm-google-map-info-window>
     </sebm-google-map-marker>
   </sebm-google-map>
+</div>
   <ion-list [hidden]="!isAdmin">
     <ion-item>
       <ion-input type="text" placeholder="Title" [(ngModel)]="event.title"></ion-input>
@@ -46,7 +46,7 @@
   ion-list:first-child {
     margin-top: 32px;
   }
-  
+
   ion-list+ion-list {
     margin-top: 0;
   }
