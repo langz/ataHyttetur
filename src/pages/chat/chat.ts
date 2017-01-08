@@ -233,6 +233,7 @@ export class ChatPage {
             orderByChild: 'dateTimeStart'
           }
         }).subscribe(data => {
+          console.log(data)
           if (this.messages.length === 0) {
             this.messages = data;
           }
