@@ -12,6 +12,7 @@ export class AdminPage {
   map;
   isAdmin = false;
   tried = false;
+  readytoShowMap = false;
   public event = {
     title: '',
     description: '',
@@ -27,12 +28,6 @@ export class AdminPage {
     private toastCtrl: ToastController,
     private modalCtrl: ModalController,
     private localStorage: Storage) {
-
-    this.map = {
-      lat: 61.307594,
-      lng: 12.238861,
-      zoom: 13
-    }
 
   }
 
@@ -86,6 +81,28 @@ export class AdminPage {
     });
     modal.present();
   }
+  centerTrysil() {
+    this.readytoShowMap = false;
+    this.map = {
+      lat: 61.307594,
+      lng: 12.238861,
+      zoom: 13
+    }
+    setTimeout(() => {
+      this.readytoShowMap = true;
+    }, 0);
+
+  }
+
+  ionViewDidEnter() {
+    setTimeout(() => {
+      this.readytoShowMap = true;
+    }, 0);
+  };
+
+  ionViewWillLeave() {
+    this.readytoShowMap = false;
+  }
 
   ionViewWillEnter() {
     this.event = {
@@ -98,6 +115,12 @@ export class AdminPage {
       lat: 0,
       lng: 0
     };
+    this.map = {
+      lat: 61.307594,
+      lng: 12.238861,
+      zoom: 13
+    }
+    console.log('will')
     this.tried = false;
     this.localStorage.get('admin').then((val) => {
       this.isAdmin = val;

@@ -9,7 +9,8 @@
   <button ion-fab (click)="getDirections()" class="fab-map" *ngIf="event.lat && event.lng">
       <ion-icon name="navigate"></ion-icon>
       </button>
-  <sebm-google-map id="map" [latitude]="map.lat" [longitude]="map.lng" [zoom]="map.zoom" *ngIf="event.lat && event.lng">
+  <sebm-google-map id="map" [latitude]="map.lat" [longitude]="map.lng" [zoom]="map.zoom" *ngIf="event.lat && event.lng"
+  [disableDefaultUI]="false" [zoomControl]="false">
     <sebm-google-map-marker [latitude]="map.lat" [longitude]="map.lng">
       <sebm-google-map-info-window>
         <strong>{{map.markerLabel}}</strong>
