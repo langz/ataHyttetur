@@ -1,7 +1,9 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
+import { AgmCoreModule } from 'angular2-google-maps/core';
 import { MyApp } from './app.component';
 import { SchedulePage } from '../pages/schedule/schedule';
+import { ScheduleDetailsPage } from '../pages/schedule/schedule-details/schedule-details';
 import { AttendeesPage } from '../pages/attendees/attendees';
 import { AttendeeDetailsPage } from '../pages/attendees/attendee-details/attendee-details';
 import { ChatPage } from '../pages/chat/chat';
@@ -13,8 +15,6 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { AngularFireModule } from 'angularfire2';
 
 import { DataProvider } from '../providers/data';
-
-import { Autoresize } from '../directives/autoresize';
 
 import { IonicImageViewerModule } from 'ionic-img-viewer';
 
@@ -32,24 +32,26 @@ export const firebaseConfig = {
   declarations: [
     MyApp,
     SchedulePage,
+    ScheduleDetailsPage,
     AttendeesPage,
     AttendeeDetailsPage,
     ChatPage,
     ChatName,
     AdminPage,
     TabsPage,
-    Login,
-    Autoresize
+    Login
   ],
   imports: [
     AngularFireModule.initializeApp(firebaseConfig),
     IonicModule.forRoot(MyApp),
-    IonicImageViewerModule
+    IonicImageViewerModule,
+    AgmCoreModule.forRoot({ apiKey: 'AIzaSyAcuvcffY2fNIBMkHrDQFGs9tIn7KJm0lc' })
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
     SchedulePage,
+    ScheduleDetailsPage,
     AttendeesPage,
     AttendeeDetailsPage,
     ChatPage,

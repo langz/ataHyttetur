@@ -3,6 +3,7 @@
     font-size: 12px;
     float: right;
     margin-top: 2px !important;
+    margin-right: 0px !important;
   }
 }
 
@@ -14,4 +15,24 @@
 
 .input-cover {
   position: static;
+}
+
+img {
+  min-height: 256px;
+}
+
+h2 {
+  min-height: 20px;
+}
+
+.custom-toast .toast-wrapper {
+  bottom: 110px !important;
+}
+
+.custom-toast {
+  z-index: 1 !important;
+}
+
+.custom-toast .toast-button {
+  width: 100%;
 }

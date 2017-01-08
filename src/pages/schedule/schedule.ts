@@ -3,6 +3,8 @@ import { Component } from '@angular/core';
 import { LoadingController, NavController } from 'ionic-angular';
 import { DataProvider } from '../../providers/data';
 
+import { ScheduleDetailsPage } from './schedule-details/schedule-details';
+
 @Component({
   selector: 'schedule-page',
   templateUrl: 'schedule.html'
@@ -13,6 +15,11 @@ export class SchedulePage {
   public sunday = [];
   constructor(private navCtrl: NavController, private data: DataProvider, private loadingController: LoadingController) {
 
+  }
+
+  openNavDetailsPage(event) {
+    console.log(event)
+    this.navCtrl.push(ScheduleDetailsPage, { event: event });
   }
 
   ionViewDidLoad() {

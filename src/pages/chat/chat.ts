@@ -1,5 +1,5 @@
 import { Component, ViewChild, Inject } from '@angular/core';
-import { LoadingController, NavController, Content, ActionSheetController, ModalController } from 'ionic-angular';
+import { LoadingController, NavController, Content, ActionSheetController, ModalController, ToastController } from 'ionic-angular';
 import { DataProvider } from '../../providers/data';
 import { Camera, CameraOptions, PhotoViewer } from 'ionic-native';
 import { ChatName } from './chat-name/chat-name';
@@ -14,10 +14,14 @@ import { FirebaseApp } from 'angularfire2';
 export class ChatPage {
 
   @ViewChild(Content) content: Content;
-
+  activeToast = false;
+  isAtBottom = false;
+  toast;
   imgSrc: any;
   storage: any;
   username: '';
+  pageActive = false;
+  toastDismissByScroll = false;
   public message = {
     name: '',
     dateTimeStart: '',
@@ -34,11 +38,11 @@ export class ChatPage {
     @Inject(FirebaseApp) firebaseApp: any,
     private actionSheetCtrl: ActionSheetController,
     private modalCtrl: ModalController,
-    private localStorage: Storage) {
+    private localStorage: Storage,
+    private toastCtrl: ToastController) {
 
     this.storage = firebaseApp.storage().ref();
     this.localStorage.get('username').then((val) => {
-      console.log(val)
       this.username = val;
     });
   }
@@ -70,7 +74,7 @@ export class ChatPage {
     let now = new Date();
     let prefix = '';
     if (date.toDateString() !== now.toDateString()) {
-      prefix = this.weekdays[date.getDay()] +' ';
+      prefix = this.weekdays[date.getDay()] + ' ';
     }
     let h = this.addZero(date.getHours());
     let m = this.addZero(date.getMinutes());
@@ -86,6 +90,7 @@ export class ChatPage {
         text: '',
         image: ''
       };
+      this.scrollToBottom(200);
     });
   }
 
@@ -100,10 +105,12 @@ export class ChatPage {
     return i;
   };
 
-  scrollToBottom() {
+  scrollToBottom(duration) {
     setTimeout(() => {
-      this.content.scrollToBottom();
-    }, 1000);
+      if (this.pageActive) {
+        this.content.scrollToBottom(500);
+      }
+    }, duration);
   };
 
   takePicture() {
@@ -131,7 +138,7 @@ export class ChatPage {
 
   addImage(options: CameraOptions) {
     let loader = this.loadingController.create({
-      content: 'Uploading your beautiful image'
+      content: 'Sharing your image with the world :)'
     });
     Camera.getPicture(options).then((imageUri) => {
       loader.present().then(() => {
@@ -140,6 +147,9 @@ export class ChatPage {
           this.message.image = imageUrl;
           this.addMessage();
           loader.dismiss();
+          this.toastDismissByScroll = true;
+          this.toast.dismiss();
+          this.scrollToBottom(1000);
         });
       });
     });
@@ -178,9 +188,39 @@ export class ChatPage {
         }
       ]
     });
+
     actionSheet.present();
   }
+  showToast(message: string) {
+    if (!this.activeToast) {
+      this.toastDismissByScroll = false;
+      this.toast = this.toastCtrl.create({
+        showCloseButton: true,
+        closeButtonText: message,
+        cssClass: 'custom-toast'
+      });
 
+      this.toast.onDidDismiss(() => {
+        if (this.pageActive && !this.toastDismissByScroll) {
+          this.scrollToBottom(200);
+        }
+        this.activeToast = false;
+      });
+      this.toast.present(this.toast);
+      this.activeToast = true;
+    }
+  }
+
+  ionViewWillEnter() {
+    this.pageActive = true;
+    this.content.ionScroll.subscribe((data) => {
+      this.isAtBottom = data.scrollTop + data.contentHeight > this.content.getContentDimensions().scrollHeight - 10;
+      if (this.isAtBottom && this.toast) {
+        this.toastDismissByScroll = true;
+        this.toast.dismiss();
+      }
+    });
+  }
 
   ionViewDidLoad() {
     let loader = this.loadingController.create({
@@ -193,11 +233,29 @@ export class ChatPage {
             orderByChild: 'dateTimeStart'
           }
         }).subscribe(data => {
-          this.messages = data;
-          this.scrollToBottom();
-          loader.dismiss();
+          if (this.messages.length === 0) {
+            this.messages = data;
+          }
+          else {
+            let lastMessage = data[data.length - 1];
+            for (let i = this.messages.length; i < data.length; i++) {
+              this.messages.push(data[i]);
+            }
+            if (lastMessage.name !== this.username && this.pageActive) {
+              this.showToast('New message(s)');
+            }
+          }
+          loader.dismiss(true);
         });
     })
+  }
+
+
+  ionViewWillLeave() {
+    this.pageActive = false;
+    if (this.toast) {
+      this.toast.dismiss();
+    }
   }
 
 }

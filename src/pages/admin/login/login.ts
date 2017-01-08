@@ -17,7 +17,7 @@ export class Login {
     this.viewCtrl.dismiss(false);
   }
   login() {
-    if (this.username ==='admin' && this.password === 'laaven2017') {
+    if (this.username ==='Admin' && this.password === 'laaven2017') {
       this.viewCtrl.dismiss(true);
     }
     else {

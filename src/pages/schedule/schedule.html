@@ -6,29 +6,23 @@
 <ion-content class="list-avatar-page">
   <ion-item-group>
     <ion-item-divider color="light">Friday</ion-item-divider>
-    <ion-item *ngFor="let event of friday" text-wrap>
-      <h3>{{ event.title }}
-        <ion-note>{{ event.timeStarts }}<span *ngIf="event.timeEnds"> - {{ event.timeEnds }}</span></ion-note>
-      </h3>
-      <p>{{ event.description }}</p>
-    </ion-item>
+    <a ion-item *ngFor="let event of friday" text-wrap (click)="openNavDetailsPage(event)">
+      <p>{{ event.timeStarts }}<span *ngIf="event.timeEnds"> - {{ event.timeEnds }}</span></p>
+      <h2>{{ event.title }}</h2>
+    </a>
   </ion-item-group>
   <ion-item-group>
     <ion-item-divider color="light">Saturday</ion-item-divider>
-    <ion-item *ngFor="let event of saturday" text-wrap>
-      <h3>{{ event.title }}
-        <ion-note>{{ event.timeStarts }}<span *ngIf="event.timeEnds"> - {{ event.timeEnds }}</span></ion-note>
-      </h3>
-      <p>{{ event.description }}</p>
-    </ion-item>
+    <a ion-item *ngFor="let event of saturday" text-wrap (click)="openNavDetailsPage(event)">
+      <p>{{ event.timeStarts }}<span *ngIf="event.timeEnds"> - {{ event.timeEnds }}</span></p>
+      <h2>{{ event.title }}</h2>
+    </a>
   </ion-item-group>
   <ion-item-group>
     <ion-item-divider color="light">Sunday</ion-item-divider>
-    <ion-item *ngFor="let event of sunday" text-wrap>
-      <h3>{{ event.title }}
-        <ion-note>{{ event.timeStarts }}<span *ngIf="event.timeEnds"> - {{ event.timeEnds }}</span></ion-note>
-      </h3>
-      <p>{{ event.description }}</p>
-    </ion-item>
+    <a ion-item *ngFor="let event of sunday" text-wrap (click)="openNavDetailsPage(event)">
+      <p>{{ event.timeStarts }}<span *ngIf="event.timeEnds"> - {{ event.timeEnds }}</span></p>
+      <h2>{{ event.title }}</h2>
+    </a>
   </ion-item-group>
 </ion-content>
