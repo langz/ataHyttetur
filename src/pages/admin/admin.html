@@ -6,8 +6,8 @@
   </ion-navbar>
 </ion-header>
 <ion-content class="outer-content">
-  <div class="map-wrapper">
-    <button ion-fab (click)="centerTrysil()" class="fab-map">
+  <div class="map-wrapper" *ngIf="isAdmin">
+    <button ion-fab (click)="centerTrysil()" class="fab-map" *ngIf="isAdmin">
       <ion-icon name="home"></ion-icon>
       </button>
     <sebm-google-map *ngIf="isAdmin && readytoShowMap" id="map" [latitude]="map.lat" [longitude]="map.lng" [zoom]="map.zoom"

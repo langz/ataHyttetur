@@ -41,17 +41,17 @@
   </div>
   <div [ngSwitch]="location">
     <ion-item no-lines *ngSwitchCase="'specific'">
-      <img *ngIf="attendee.lokasjon ==='Høydehuset 1.etg'" src="assets/img/1.jpg" imageViewer />
-      <img *ngIf="attendee.lokasjon ==='Høydehuset 2.etg'" src="assets/img/2.jpg" imageViewer />
-      <img *ngIf="attendee.lokasjon ==='Høydehuset 3.etg'" src="assets/img/3.jpg" imageViewer />
-      <img *ngIf="attendee.navn ==='Risbiten' && attendee.lokasjon ==='Bygget på andre siden av tunet'" src="assets/img/risbiten.jpg"
+      <img *ngIf="attendee.lokasjon ==='Høydehuset 1.etg'" src="https://firebasestorage.googleapis.com/v0/b/atahyttetur.appspot.com/o/staticimages%2F1.jpg?alt=media&token=65bf03e7-1105-4035-ad89-0d0cdbe3894a" imageViewer />
+      <img *ngIf="attendee.lokasjon ==='Høydehuset 2.etg'" src="https://firebasestorage.googleapis.com/v0/b/atahyttetur.appspot.com/o/staticimages%2F2.jpg?alt=media&token=507fd700-8c0e-4751-bc5d-f68242febb50" imageViewer />
+      <img *ngIf="attendee.lokasjon ==='Høydehuset 3.etg'" src="https://firebasestorage.googleapis.com/v0/b/atahyttetur.appspot.com/o/staticimages%2F3.jpg?alt=media&token=8f42bfff-6440-4c79-8a63-6db1dc50f378" imageViewer />
+      <img *ngIf="attendee.navn ==='Risbiten' && attendee.lokasjon ==='Bygget på andre siden av tunet'" src="https://firebasestorage.googleapis.com/v0/b/atahyttetur.appspot.com/o/staticimages%2Frisbiten.jpg?alt=media&token=63c213de-304a-42d6-807a-e7f9db35a087"
         imageViewer />
-      <img *ngIf="attendee.navn ==='Kvilsten' && attendee.lokasjon ==='Bygget på andre siden av tunet'" src="assets/img/kvilsten.jpg"
+      <img *ngIf="attendee.navn ==='Kvilsten' && attendee.lokasjon ==='Bygget på andre siden av tunet'" src="https://firebasestorage.googleapis.com/v0/b/atahyttetur.appspot.com/o/staticimages%2Fkvilsten.jpg?alt=media&token=7e4f120f-2c65-4c2a-97eb-c82e158015f2"
         imageViewer />
     </ion-item>
     <div *ngSwitchCase="'overview'">
       <ion-item no-lines>
-        <img src="assets/img/oversikt.jpg" imageViewer />
+        <img src="https://firebasestorage.googleapis.com/v0/b/atahyttetur.appspot.com/o/staticimages%2Foversikt.jpg?alt=media&token=40ea3e03-ec63-47c7-97b6-f928007adf0e" imageViewer />
       </ion-item>
       <ion-item no-lines text-wrap>
         <p style="text-align: center;">1: Høydehuset 8: Kvilsten 9: Risbiten</p>
