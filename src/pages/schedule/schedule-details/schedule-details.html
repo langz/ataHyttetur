@@ -6,11 +6,9 @@
   </ion-navbar>
 </ion-header>
 <ion-content class="cards-bg">
-  <a [attr.href]="domSanitizer.bypassSecurityTrustResourceUrl(geoLink)" target="_blank" *ngIf="event.lat && event.lng">
-    <button ion-fab class="fab-map" *ngIf="event.lat && event.lng">
-        <ion-icon name="navigate"></ion-icon>
-    </button>
-  </a>
+  <button ion-fab (click)="linkGeo()" class="fab-map" *ngIf="event.lat && event.lng">
+      <ion-icon name="navigate"></ion-icon>
+  </button>
   <sebm-google-map id="map" [latitude]="map.lat" [longitude]="map.lng" [zoom]="map.zoom" *ngIf="event.lat && event.lng" [disableDefaultUI]="false"
     [zoomControl]="false">
     <sebm-google-map-marker [latitude]="map.lat" [longitude]="map.lng">
