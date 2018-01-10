@@ -34,9 +34,9 @@ export class SchedulePage {
             orderByChild: 'dateTimeStart'
           }
         }).subscribe(data => {
-          this.friday = data.filter(event => event.date === '2017-01-20');
-          this.saturday = data.filter(event => event.date === '2017-01-21');
-          this.sunday = data.filter(event => event.date === '2017-01-22');
+          this.friday = data.filter(event => event.date === '2018-01-12');
+          this.saturday = data.filter(event => event.date === '2018-01-13');
+          this.sunday = data.filter(event => event.date === '2018-01-14');
           loader.dismiss();
         });
     })
