@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { LaunchNavigator, LaunchNavigatorOptions } from 'ionic-native';
+import { DomSanitizer } from '@angular/platform-browser';
+
 declare var window: any;
 
 @Component({
@@ -10,13 +12,15 @@ declare var window: any;
 export class ScheduleDetailsPage {
   map;
   start: string;
+  geoLink;
   event;
   roomies = [];
   location = 'specific';
   weekdays = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT']
-  constructor(private navCtrl: NavController, private params: NavParams) {
+  constructor(private navCtrl: NavController, private params: NavParams, public domSanitizer: DomSanitizer) {
     this.start = "";
     this.event = params.data.event;
+    this.geoLink = 'http://maps.google.com/?q=' + this.event.lat + ',' + this.event.lng;
     this.map = {
       lat: this.event.lat,
       lng: this.event.lng,

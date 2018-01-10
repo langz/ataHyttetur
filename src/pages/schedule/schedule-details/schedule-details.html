@@ -6,28 +6,30 @@
   </ion-navbar>
 </ion-header>
 <ion-content class="cards-bg">
-  <button ion-fab (click)="getDirections()" class="fab-map" *ngIf="event.lat && event.lng">
-      <ion-icon name="navigate"></ion-icon>
-      </button>
-  <sebm-google-map id="map" [latitude]="map.lat" [longitude]="map.lng" [zoom]="map.zoom" *ngIf="event.lat && event.lng"
-  [disableDefaultUI]="false" [zoomControl]="false">
+  <a [attr.href]="domSanitizer.bypassSecurityTrustResourceUrl(geoLink)" target="_blank" *ngIf="event.lat && event.lng">
+    <button ion-fab class="fab-map" *ngIf="event.lat && event.lng">
+        <ion-icon name="navigate"></ion-icon>
+    </button>
+  </a>
+  <sebm-google-map id="map" [latitude]="map.lat" [longitude]="map.lng" [zoom]="map.zoom" *ngIf="event.lat && event.lng" [disableDefaultUI]="false"
+    [zoomControl]="false">
     <sebm-google-map-marker [latitude]="map.lat" [longitude]="map.lng">
       <sebm-google-map-info-window>
         <strong>{{map.markerLabel}}</strong>
       </sebm-google-map-info-window>
     </sebm-google-map-marker>
-  </sebm-google-map>
-  <ion-card-content>
-    <ion-note item-left>
-      <span>{{ getDay(event.dateTimeStart) }}</span>
-      <span> {{event.timeStarts}}</span>
-      <span *ngIf="event.timeEnds">- {{event.timeEnds}}</span>
-    </ion-note>
-    <ion-card-title>
-      {{ event.title }}
-    </ion-card-title>
-    <p>
-      {{ event.description }}
-    </p>
-  </ion-card-content>
+    </sebm-google-map>
+    <ion-card-content>
+      <ion-note item-left>
+        <span>{{ getDay(event.dateTimeStart) }}</span>
+        <span> {{event.timeStarts}}</span>
+        <span *ngIf="event.timeEnds">- {{event.timeEnds}}</span>
+      </ion-note>
+      <ion-card-title>
+        {{ event.title }}
+      </ion-card-title>
+      <p>
+        {{ event.description }}
+      </p>
+    </ion-card-content>
 </ion-content>
