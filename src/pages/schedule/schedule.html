@@ -9,6 +9,9 @@
     <a ion-item *ngFor="let event of friday" text-wrap (click)="openNavDetailsPage(event)">
       <p>{{ event.timeStarts }}<span *ngIf="event.timeEnds"> - {{ event.timeEnds }}</span></p>
       <h2>{{ event.title }}</h2>
+      <span class="badge" [ngClass]="{'must': event.label === 'MÅ', 'should' : event.label === 'BØR', 'can' : event.label === 'KAN'}">
+          {{ event.label }}
+      </span>
     </a>
   </ion-item-group>
   <ion-item-group>
@@ -16,6 +19,9 @@
     <a ion-item *ngFor="let event of saturday" text-wrap (click)="openNavDetailsPage(event)">
       <p>{{ event.timeStarts }}<span *ngIf="event.timeEnds"> - {{ event.timeEnds }}</span></p>
       <h2>{{ event.title }}</h2>
+      <span class="badge" [ngClass]="{'must': event.label === 'MÅ', 'should' : event.label === 'BØR', 'can' : event.label === 'KAN'}">
+          {{ event.label }}
+      </span>
     </a>
   </ion-item-group>
   <ion-item-group>
@@ -23,6 +29,9 @@
     <a ion-item *ngFor="let event of sunday" text-wrap (click)="openNavDetailsPage(event)">
       <p>{{ event.timeStarts }}<span *ngIf="event.timeEnds"> - {{ event.timeEnds }}</span></p>
       <h2>{{ event.title }}</h2>
+      <span class="badge" [ngClass]="{'must': event.label === 'MÅ', 'should' : event.label === 'BØR', 'can' : event.label === 'KAN'}">
+          {{ event.label }}
+      </span>
     </a>
   </ion-item-group>
 </ion-content>
