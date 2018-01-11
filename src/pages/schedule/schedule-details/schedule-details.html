@@ -25,6 +25,10 @@
       </ion-note>
       <ion-card-title>
         {{ event.title }}
+        <span class="badge"
+        [ngClass]="{'must': event.label === 'MÅ', 'should' : event.label === 'BØR', 'can' : event.label === 'KAN'}">
+          {{ event.label }}
+        </span>
       </ion-card-title>
       <p>
         {{ event.description }}
