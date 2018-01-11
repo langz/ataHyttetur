@@ -25,7 +25,7 @@ export class DataProvider {
   }
 
   getAttendees() {
-    return this.http.get('http://hyttetur-fagerholm.1d35.starter-us-east-1.openshiftapps.com/gjesteliste')
+    return this.http.get('https://hyttetur-fagerholm.1d35.starter-us-east-1.openshiftapps.com/gjesteliste')
       .map((res: Response) => res.json());
   }
 
