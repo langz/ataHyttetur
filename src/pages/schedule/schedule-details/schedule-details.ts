@@ -59,8 +59,7 @@ export class ScheduleDetailsPage {
     }
     return i;
   };
-  ngOnInit() {
-    console.log('hi world')
-  }
+
+  ngOnInit() { }
 
 }

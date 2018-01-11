@@ -18,7 +18,6 @@ export class SchedulePage {
   }
 
   openNavDetailsPage(event) {
-    console.log(event)
     this.navCtrl.push(ScheduleDetailsPage, { event: event });
   }
 

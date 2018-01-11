@@ -9,26 +9,18 @@ import { DataProvider } from '../../../providers/data';
 export class AttendeeDetailsPage {
   attendee;
   roomies = [];
+  roomiesExcludingAttendee = [];
   location = 'specific';
   constructor(private navCtrl: NavController, private data: DataProvider, private params: NavParams) {
     this.attendee = params.data.attendee;
+    this.roomies = params.data.roomies;
+    this.roomiesExcludingAttendee = this.roomies.filter(roomie => this.attendee.etternavn !== roomie.etternavn && this.attendee.fornavn !== roomie.fornavn);
   }
 
   openNavDetailsPage(attendee) {
-    this.navCtrl.push(AttendeeDetailsPage, { attendee: attendee });
+    this.navCtrl.push(AttendeeDetailsPage, { attendee: attendee, roomies: this.roomies });
   }
 
-  ngOnInit() {
-    console.log('hei schedule');
-    this.data.list('attendees',
-      {
-        query: {
-          orderByChild: 'navn',
-          equalTo: this.attendee.navn
-        }
-      }).subscribe(data => {
-        this.roomies = data.filter(roomie => roomie.$key !== this.attendee.$key);
-      });
-  }
+  ngOnInit() { }
 
 }

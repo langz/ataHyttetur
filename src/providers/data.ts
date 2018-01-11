@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
+import { Http, Response } from '@angular/http';
 import { AngularFire, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2';
 import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/map'
 
 @Injectable()
 export class DataProvider {
-  constructor(private af: AngularFire) { }
+  constructor(private af: AngularFire, private http: Http) { }
 
   push(path: string, data: any): Observable<any> {
     return Observable.create(observer => {
@@ -20,6 +22,11 @@ export class DataProvider {
 
   update(path: string, data: any) {
     this.af.database.object(path).update(data);
+  }
+
+  getAttendees() {
+    return this.http.get('http://hyttetur-fagerholm.1d35.starter-us-east-1.openshiftapps.com/gjesteliste')
+      .map((res: Response) => res.json());
   }
 
   list(path: string, queryObj: Object): FirebaseListObservable<any> {
