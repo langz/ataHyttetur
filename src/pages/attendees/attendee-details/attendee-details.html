@@ -9,9 +9,11 @@
   <ion-item-group>
     <ion-item-divider color="light">General Info</ion-item-divider>
     <ion-item no-lines>
-      <ion-icon name="bus" item-left large></ion-icon>
+      <ion-icon name="bus" item-left large *ngIf="attendee.transport ==='BUSS_TIDLIG' || attendee.transport ==='BUSS_SEN'"></ion-icon>
+      <ion-icon name="car" item-left large *ngIf="attendee.transport ==='BIL'"></ion-icon>
       <h2 *ngIf="attendee.transport ==='BUSS_TIDLIG'">Friday 12:00</h2>
       <h2 *ngIf="attendee.transport ==='BUSS_SEN'">Friday 16:00</h2>
+      <h2 *ngIf="attendee.transport ==='BIL'">Own transport</h2>
     </ion-item>
     <ion-item no-lines>
       <ion-icon name="trophy" item-left large></ion-icon>
@@ -41,7 +43,7 @@
   </div>
   <div [ngSwitch]="location">
     <ion-item no-lines *ngSwitchCase="'specific'">
-      <img *ngIf="attendee.rom.lokasjon ==='Storskogen 1.etg'" src="https://firebasestorage.googleapis.com/v0/b/atahyttetur.appspot.com/o/staticimages%2F1.jpg?alt=media&token=65bf03e7-1105-4035-ad89-0d0cdbe3894a" imageViewer />
+      <img *ngIf="attendee.rom.lokasjon ==='Storskogen 1.etg'" src="https://firebasestorage.googleapis.com/v0/b/atahyttetur.appspot.com/o/staticimages%2F1.JPG?alt=media&token=cb9f6da0-240c-41c7-be62-ae60b497286c" imageViewer />
       <img *ngIf="attendee.rom.lokasjon ==='Storskogen 2.etg'" src="https://firebasestorage.googleapis.com/v0/b/atahyttetur.appspot.com/o/staticimages%2F2.jpg?alt=media&token=507fd700-8c0e-4751-bc5d-f68242febb50" imageViewer />
       <img *ngIf="attendee.rom.lokasjon ==='Storskogen 3.etg'" src="https://firebasestorage.googleapis.com/v0/b/atahyttetur.appspot.com/o/staticimages%2F3.jpg?alt=media&token=8f42bfff-6440-4c79-8a63-6db1dc50f378" imageViewer />
       <img *ngIf="attendee.rom.lokasjon ==='Vesleskogen 1.etg'" src="https://firebasestorage.googleapis.com/v0/b/atahyttetur.appspot.com/o/staticimages%2Fvesleskogen1.jpg?alt=media&token=f7cd7522-281d-4a65-8707-9d6a27921b46" imageViewer />
